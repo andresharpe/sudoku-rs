@@ -10,12 +10,12 @@ USAGE:
     sudoku-rs.exe [FLAGS] [OPTIONS]
 
 FLAGS:
-    -g, --generate    Solves puzzles in a text file
+    -g, --generate    Generates puzzles and appends them to a text file
     -h, --help        Prints help information
     -s, --solve       Solves puzzles in a text file
     -V, --version     Prints version information
 
 OPTIONS:
-    -f, --file <file>        A file containing puzzles, one per line. Defaults to .\puzzles.txt.
-    -n, --number <number>    The number of puzzles to generate and append to file.
+    -f, --file <file>        A file containing puzzles, one per line. Defaults to .\puzzles.txt
+    -n, --number <number>    The number of puzzles to generate and append to file
 ````

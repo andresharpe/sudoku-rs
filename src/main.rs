@@ -32,18 +32,18 @@ fn main() {
                  .long("generate")
                  .takes_value(false)
                  .conflicts_with("solve")
-                 .help("Solves puzzles in a text file"))
+                 .help("Generates puzzles and appends them to a text file"))
         .arg(Arg::with_name("file")
                  .short("f")
                  .long("file")
                  .takes_value(true)
-                 .help("A file containing puzzles, one per line. Defaults to .\\puzzles.txt."))
+                 .help("A file containing puzzles, one per line. Defaults to .\\puzzles.txt"))
         .arg(Arg::with_name("number")
                  .short("n")
                  .conflicts_with("solve")
                  .long("number")
                  .takes_value(true)
-                 .help("The number of puzzles to generate and append to file."));
+                 .help("The number of puzzles to generate and append to file"));
 
     let matches = app.get_matches();
 
