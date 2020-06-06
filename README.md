@@ -1,6 +1,7 @@
 # sudoku-rs
 Sudoku CLI solver and generator
 
+````
 Sudoko CLI 0.1.0
 Andre Sharpe <andre.sharpe@gmail.com>
 Solves and generates Sudoku puzzles
@@ -17,3 +18,4 @@ FLAGS:
 OPTIONS:
     -f, --file <file>        A file containing puzzles, one per line.
     -n, --number <number>    The number of puzzles to generate an append to file.
+````
