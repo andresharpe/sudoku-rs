@@ -37,13 +37,13 @@ fn main() {
                  .short("f")
                  .long("file")
                  .takes_value(true)
-                 .help("A file containing puzzles, one per line."))
+                 .help("A file containing puzzles, one per line. Defaults to .\\puzzles.txt."))
         .arg(Arg::with_name("number")
                  .short("n")
                  .conflicts_with("solve")
                  .long("number")
                  .takes_value(true)
-                 .help("The number of puzzles to generate an append to file."));
+                 .help("The number of puzzles to generate and append to file."));
 
     let matches = app.get_matches();
 
