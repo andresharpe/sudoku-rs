@@ -16,6 +16,6 @@ FLAGS:
     -V, --version     Prints version information
 
 OPTIONS:
-    -f, --file <file>        A file containing puzzles, one per line.
-    -n, --number <number>    The number of puzzles to generate an append to file.
+    -f, --file <file>        A file containing puzzles, one per line. Defaults to .\puzzles.txt.
+    -n, --number <number>    The number of puzzles to generate and append to file.
 ````
