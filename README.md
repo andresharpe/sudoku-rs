@@ -1,5 +1,5 @@
 # sudoku-rs
-Sudoku CLI solver and generator
+Sudoku CLI solver and generator written in Rust
 
 ````
 Sudoko CLI 0.1.0
