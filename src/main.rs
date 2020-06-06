@@ -14,7 +14,6 @@ static mut SOLUTIONS_FOUND: u32 = 0;
 static mut PUZZLE: [u8;81] = [0; 81];
 
 fn main() {
-
     let now = Instant::now();
 
     let app = App::new("Sudoko CLI")
@@ -46,7 +45,6 @@ fn main() {
                  .help("The number of puzzles to generate and append to file"));
 
     let matches = app.get_matches();
-
     let filename = matches.value_of("file").unwrap_or("puzzle.txt");
     
     if matches.is_present("solve") {
@@ -121,7 +119,6 @@ where P: AsRef<Path>, {
 }
 
 unsafe fn print_puzzle() {
-
     println!( " +---------+---------+---------+ " ); 
     for i in 0..81{
         if i % 9 == 0  { print!(" |"); }        
