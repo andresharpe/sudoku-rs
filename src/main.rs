@@ -146,10 +146,10 @@ unsafe fn solve_puzzle() {
 
 unsafe fn solve() {
     let mut numbers = [1,2,3,4,5,6,7,8,9];
-    let mut rng = thread_rng();
+    let mut random_number_gen = thread_rng();
     for i in 0..81{
         if PUZZLE[i] == 0 {
-            numbers.shuffle(&mut rng);
+            numbers.shuffle(&mut random_number_gen);
             for value in 0..9{
                 if is_valid_value( i, numbers[value] ){
                     PUZZLE[i] = numbers[value];
@@ -185,6 +185,7 @@ unsafe fn is_valid_value( pos: usize, value: u8 ) -> bool {
 
 unsafe fn generate_puzzle() {
 
+    // generate a random solution
     clear_puzzle();
     LIMIT_SOLUTIONS = 1;
     solve_puzzle();
@@ -192,11 +193,13 @@ unsafe fn generate_puzzle() {
     let mut new_puzzle: [u8;81] = [0; 81];
     for i in 0..81 { new_puzzle[i] = PUZZLE[i]; }
 
+    // remove numbers from solved board
     let mut removelist: [usize;81] = [0; 81];
     for i in 0..81 { removelist[i] = i; }
-    let mut rng = thread_rng();
-    removelist.shuffle(&mut rng);
+    let mut random_number_gen = thread_rng();
+    removelist.shuffle(&mut random_number_gen);
 
+    // systematically remove a number and confirm there is only one solution all the way or reverse it
     LIMIT_SOLUTIONS = 2;
     for i in 0..81 { 
         let save_item = new_puzzle[ removelist[i] ];
@@ -207,6 +210,8 @@ unsafe fn generate_puzzle() {
             new_puzzle[ removelist[i] ] = save_item;
         }
     }
+
+    // done
     set_puzzle( new_puzzle );
     LIMIT_SOLUTIONS = 1;
 }
