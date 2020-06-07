@@ -1,4 +1,4 @@
-# sudoku-rs
+# sudoku-net
 Sudoku CLI solver and generator written in Rust
 
 ````

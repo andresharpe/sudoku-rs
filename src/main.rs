@@ -12,6 +12,7 @@ use std::time::{Instant};
 static mut LIMIT_SOLUTIONS: u32 = 1;
 static mut SOLUTIONS_FOUND: u32 = 0;
 static mut PUZZLE: [u8;81] = [0; 81];
+static mut COMPLETED: u32 = 0;
 
 fn main() {
     let now = Instant::now();
@@ -54,7 +55,11 @@ fn main() {
         solve_from_file( &filename );
     }
 
-    println!("Elapsed time: {} seconds.", now.elapsed().as_secs());
+    unsafe {
+        let secs = now.elapsed().as_secs() as f64;
+        let speed = f64::from( COMPLETED )/secs;
+        println!("Elapsed time: {} seconds. Puzzles completed: {}. Speed: {:.3} puzzles/second.", secs, COMPLETED, speed );
+    }
 
 }
 
@@ -77,6 +82,7 @@ fn solve_from_file( filename: &str ){
                             println!();
                             println!( "There is no solution for this puzzle.");
                         }
+                        COMPLETED += 1;
                     }
                 }
             }
@@ -98,6 +104,7 @@ fn generate_to_file( filename: &str, number: u32){
             let s_puzzle = puzzle_to_string();
             file.write_all("\n".as_bytes()).expect("Write failed.");
             file.write_all(s_puzzle.as_bytes()).expect("Write failed.");
+            COMPLETED += 1;
         }
     }
 }
