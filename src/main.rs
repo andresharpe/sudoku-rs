@@ -45,7 +45,7 @@ fn main() {
                  .help("The number of puzzles to generate and append to file"));
 
     let matches = app.get_matches();
-    let filename = matches.value_of("file").unwrap_or("puzzle.txt");
+    let filename = matches.value_of("file").unwrap_or(".\\puzzle.txt");
     
     if matches.is_present("solve") {
         solve_from_file( &filename );

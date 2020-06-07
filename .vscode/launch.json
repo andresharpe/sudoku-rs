@@ -9,7 +9,7 @@
             "type": "cppvsdbg",
             "request": "launch",
             "program": "${workspaceFolder}/target/debug/sudoku-rs.exe",
-            "args": [".\\puzzle.txt"],
+            "args": [""],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
             "environment": [],
