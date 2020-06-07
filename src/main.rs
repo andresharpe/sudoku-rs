@@ -47,12 +47,11 @@ fn main() {
     let matches = app.get_matches();
     let filename = matches.value_of("file").unwrap_or(".\\puzzle.txt");
     
-    if matches.is_present("solve") {
-        solve_from_file( &filename );
-    }
-    else if matches.is_present("generate"){
+    if matches.is_present("generate") {
         let number = matches.value_of("number").unwrap_or("10").parse::<u32>().unwrap_or(10);
         generate_to_file( &filename, number );
+    } else {
+        solve_from_file( &filename );
     }
 
     println!("Elapsed time: {} seconds.", now.elapsed().as_secs());
@@ -65,13 +64,20 @@ fn solve_from_file( filename: &str ){
         // Consumes the iterator, returns an (Optional) String
         for line in lines {
             if let Ok(s_puzzle) = line {
-                unsafe {  // because it updates static variables
-                    l += 1;
-                    println!("Solving puzzle: {}", l);
-                    string_to_puzzle(s_puzzle);
-                    print_puzzle();
-                    solve_puzzle();
-                    print_puzzle();
+                if s_puzzle.len() >= 81 {
+                    unsafe {  // because it updates static variables
+                        l += 1;
+                        println!("Solving puzzle: {}", l);
+                        string_to_puzzle(s_puzzle);
+                        print_puzzle();
+                        solve_puzzle();
+                        if SOLUTIONS_FOUND == 1{
+                            print_puzzle();
+                        } else {
+                            println!();
+                            println!( "There is no solution for this puzzle.");
+                        }
+                    }
                 }
             }
         }
@@ -172,8 +178,8 @@ unsafe fn is_valid_value( pos: usize, value: u8 ) -> bool {
     // check for value in same block
     let block_row = y/3 * 3; // find top row
     let block_col = x/3 * 3; // find left column
-    for block_y in block_row..block_row+2 {
-        for block_x in block_col..block_col+2 {
+    for block_y in block_row..block_row+3 {
+        for block_x in block_col..block_col+3 {
             if PUZZLE[ (block_y*9) + block_x ] == value { return false; } 
         }
     }
